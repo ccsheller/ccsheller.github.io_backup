@@ -4,7 +4,7 @@
 #+DATE:        2015-12-27 周日
 #+URI:         /about/
 #+KEYWORDS:    About,关于
-#+TAGS:        <TODO: insert your tags here>
+#+TAGS:        emacs,vim,hexo,org
 #+LANGUAGE:    en
 #+OPTIONS:     H:3 num:nil toc:nil \n:nil ::t |:t ^:nil -:nil f:t *:t <:t
 #+DESCRIPTION: About blog
