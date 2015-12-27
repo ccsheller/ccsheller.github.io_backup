@@ -1,0 +1,323 @@
+<!DOCTYPE html>
+<html lang="en-us">
+  <head>
+    <title>学习Markdown - 代码考古</title>
+    <meta charset="utf-8" />
+    <meta name="author" content="ccsheller" />
+    <meta name="description" content="" />
+    <meta name="keywords" content="" />
+    <link rel="stylesheet" href="/media/css/main.css" type="text/css">
+    <link rel="stylesheet" href="/media/css/prettify.css" type="text/css">
+  </head>
+  <body class="container">
+    <div>
+      <header class="masthead">
+        <h1 class="masthead-title"><a href="/">代码考古</a></h1>
+        <p>探究源码</p>
+        <ul>
+          <li><a href="/blog/">Blog</a></li>
+          <li><a href="/tags/">Tags</a></li>
+          <li><a href="/about/">About</a></li>
+          <li><a href="https://github.com/ccsheller">GitHub</a></li>
+          <li><a href="/rss.xml">RSS</a></li>
+        </ul>
+        <form method="get" id="searchform" action="http://www.google.com/search">
+          <input type="text" class="field" name="q" id="s" placeholder="Search">
+          <input type="hidden" name="as_sitesearch" value="ccshell.com">
+        </form>
+      </header>
+    </div>
+
+<div>
+<div class="post">
+<h1>学习Markdown</h1>
+
+
+<div id="outline-container-sec-1" class="outline-2">
+<h2 id="sec-1">Setext形式的第一级标题</h2>
+<div class="outline-text-2" id="text-1">
+<pre class="example">
+语法：文字下行输入=
+============
+</pre>
+</div>
+
+<div id="outline-container-sec-1-1" class="outline-3">
+<h3 id="sec-1-1">Setext形式的第二级标题</h3>
+<div class="outline-text-3" id="text-1-1">
+<pre class="example">
+语法：文字下行输入减号
+------------
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-sec-2" class="outline-2">
+<h2 id="sec-2">Atx形式的第一级标题</h2>
+<div class="outline-text-2" id="text-2">
+<pre class="example">
+语法：行开头输入#后接空格或tab
+# Atx形式的第一级标题
+</pre>
+</div>
+
+<div id="outline-container-sec-2-1" class="outline-3">
+<h3 id="sec-2-1">Atx形式的第二级标题</h3>
+<div class="outline-text-3" id="text-2-1">
+<pre class="example">
+语法：行开头输入##后接空格或tab
+## Atx形式的第二级标题
+</pre>
+</div>
+
+<div id="outline-container-sec-2-1-1" class="outline-4">
+<h4 id="sec-2-1-1">Atx形式的第三级标题</h4>
+<div class="outline-text-4" id="text-2-1-1">
+<pre class="example">
+语法：行开头输入###后接空格或tab
+### Atx形式的第三级标题
+</pre>
+
+<blockquote>
+<p>
+这是一个块引用
+</p>
+
+<p>
+这是前一个块引用的第二段
+</p>
+
+<ul class="org-ul">
+<li>这是第一级标题形式的块引用
+</li>
+</ul>
+</blockquote>
+
+<pre class="example">
+语法：&gt;开头后接空格或tab
+&gt; 这是一个块引用
+&gt; 
+&gt; 这是前一个块引用的第二段
+&gt; 
+&gt; # 这是第一级标题形式的块引用
+</pre>
+
+<p>
+<i>这是一个强调</i>
+</p>
+
+<pre class="example">
+语法：斜体强调，用*号括起来，不能有空格
+*这是一个强调*
+</pre>
+
+<p>
+<i>这是另一个强调</i>
+</p>
+
+<pre class="example">
+语法：斜体强调，用下划线括起来，不能有空格
+_这是另一个强调_
+</pre>
+
+<p>
+<b>这是一个强调</b>
+</p>
+
+<pre class="example">
+语法：加粗强调，用**号括起来，不能有空格
+**这是一个强调**
+</pre>
+
+<p>
+<b>这是另一个强调</b>
+</p>
+
+<pre class="example">
+语法：加粗强调，用双下划线号括起来，不能有空格
+__这是另一个强调__
+</pre>
+
+<ul class="org-ul">
+<li>一种无序列表，注意要有一个空格
+</li>
+<li>它的第二段
+</li>
+<li>它的第三段
+
+<pre class="example">
+语法：*号开头加一个空格或tab
+* 一种无序列表，注意要有一个空格
+* 它的第二段
+* 它的第三段
+</pre>
+</li>
+
+<li>另一种无序列表
+</li>
+<li>它的第二段
+</li>
+<li>它的第三段
+
+<pre class="example">
+语法：+号开头加一个空格或tab
++ 另一种无序列表
++ 它的第二段
++ 它的第三段
+</pre>
+</li>
+
+<li>还是另一种无序列表
+</li>
+<li>它的第二段
+
+<pre class="example">
+语法：-号开头加一个空格或tab
+- 还是另一种无序列表
+- 它的第二段
+</pre>
+</li>
+
+<li>有序的列表
+</li>
+<li>第二段
+</li>
+<li>第三段
+
+<pre class="example">
+语法：数字加英文句点开头加一个空格或tab
+1. 有序的列表
+2. 第二段
+3. 第三段
+</pre>
+</li>
+</ul>
+
+<p>
+这是一个链接行内<a href="http://ccshell.com/">测试</a>
+</p>
+
+<pre class="example">
+    这是一个链接行内[测试](http://ccshell.com/ "我是标题")
+</pre>
+
+<p>
+这是一个链接参考<a href="http://ccshell.com/">测试</a>
+</p>
+
+<pre class="example">
+这是一个链接参考[测试][cc] cc是名称，可以是数字或字符串，不区分大小写
+[cc]: http://ccshell.com/ "ccshell"
+</pre>
+
+<p>
+显示一个图片行内<img src="https://assets-cdn.github.com/images/modules/dashboard/bootcamp/octocat_collabocats.png" alt="octocat_collabocats.png" />
+</p>
+
+<pre class="example">
+显示一个图片行内
+![github](https://assets-cdn.github.com/images/modules/dashboard/bootcamp/octocat_collabocats.png "我是图片标题")
+</pre>
+
+<p>
+显示一个图片参考<img src="https://assets-cdn.github.com/images/modules/dashboard/bootcamp/octocat_collabocats.png" alt="octocat_collabocats.png" />
+</p>
+
+<pre class="example">
+显示一个图片参考
+![github][pic_path]
+[PIC_PATH]: https://assets-cdn.github.com/images/modules/dashboard/bootcamp/octocat_collabocats.png "我是图片标题"
+</pre>
+
+<p>
+输入行内代码=&lt;blink&gt;= <code>&amp;mdash</code>
+</p>
+
+<pre class="example">
+    输入行内代码`&lt;blink&gt;` `&amp;mdash` 用反引号括起来
+</pre>
+
+<p>
+输入整块代码，用4个空格或一个tab缩进后接内容。在列表后面需要8个空格或两个tab缩进
+</p>
+
+<p>
+插入html代码
+</p>
+
+<table border="1"><tr><td>
+
+<p>
+单元格
+</p>
+
+</td></tr></table>
+
+<pre class="example">
+插入html代码，可以直接输入html标签
+&lt;table border="1"&gt;
+&lt;tr&gt;
+    &lt;td&gt;单元格&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/table&gt;
+</pre>
+</div>
+</div>
+</div>
+</div>
+
+</div>
+</div>
+    <div>
+      <div class="post-meta">
+        <span title="post date" class="post-info">2015-12-06</span>
+        <span title="last modification date" class="post-info">2015-12-27</span>
+        <span title="tags" class="post-info"><a href="/tags/markdown/">Markdown</a></span>
+        <span title="author" class="post-info">ccsheller</span>
+      </div>
+      <section>
+        <h1>Comments</h1>
+        <div id="disqus_thread"></div>
+        <script type="text/javascript">
+          //var disqus_developer = 1;
+          var disqus_identifier = "/blog/2015/12/06/学习markdown/";
+          var disqus_url = "http://ccshell.com/blog/2015/12/06/学习markdown/";
+          var disqus_shortname = 'ccshell';
+          /* * * DON'T EDIT BELOW THIS LINE * * */
+          (function() {
+          var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+          dsq.src = 'http://' + disqus_shortname + '.disqus.com/embed.js';
+          (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+          })();
+        </script>
+        <noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+        <a href="http://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+      </section>
+      <script src="http://code.jquery.com/jquery-latest.min.js"></script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/prettify/r298/prettify.js"></script>
+      <script src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+      <script src="/media/js/main.js"></script>
+      <script type="text/javascript">
+        var _gaq = _gaq || [];
+        _gaq.push(['_setAccount', '28107488']);
+        _gaq.push(['_trackPageview']);
+        (function() {
+        var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+        ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+        var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+        })();
+      </script>
+      <div class="footer">
+        <p>Generated by <a href="http://www.gnu.org/software/emacs/">Emacs</a> 24.x (<a href="http://orgmode.org">Org mode</a> 8.x)</p>
+        <p>
+          Copyright &copy; 2012 - <span id="footerYear"></span> <a href="mailto:ccsheller &lt;at&gt; gmail &lt;dot&gt; com">ccsheller</a>
+          &nbsp;&nbsp;-&nbsp;&nbsp;
+          Powered by <a href="https://github.com/kelvinh/org-page" target="_blank">org-page</a>
+          <script type="text/javascript">document.getElementById("footerYear").innerHTML = (new Date()).getFullYear();</script>
+        </p>
+      </div>
+    </div>
+
+  </body>
+</html>
