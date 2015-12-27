@@ -1,4 +1,4 @@
->#+TITLE:       关于
+#+TITLE:       关于
 #+AUTHOR:      ccsheller
 #+EMAIL:       ccsheller@gmail.com
 #+DATE:        2015-12-27 周日
