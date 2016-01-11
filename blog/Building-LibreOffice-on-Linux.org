@@ -1,0 +1,137 @@
+#+TITLE:       Linux下编译Libreoffice
+#+AUTHOR:      ccsheller
+#+EMAIL:       ccsheller@gmail.com
+#+DATE:        2016-01-07 周四
+#+URI:         /blog/%y/%m/%d/build_libreoffice_for_linux
+#+KEYWORDS:    libreoffice, ubuntu
+#+TAGS:        libreoffice, ubuntu
+#+LANGUAGE:    en
+#+OPTIONS:     H:3 num:nil toc:nil \n:nil ::t |:t ^:nil -:nil f:t *:t <:t
+#+DESCRIPTION: Linux下编译Libreoffice
+
+
+
+项目比较大，编译时间比较长。建议代码放在至少有30G剩余空间的磁盘位置。 #
+更新系统（重要） 先更新系统，以防装了编译环境后系统出现问题。
+在Debian/Ubuntu中：
+
+#+BEGIN_EXAMPLE
+    sudo apt-get update
+    sudo apt-get dist-upgrade
+#+END_EXAMPLE
+
+在Fedora中：
+
+#+BEGIN_EXAMPLE
+    su -c 'yum update'
+#+END_EXAMPLE
+
+* 编译环境
+
+最简单的方式使用系统提供的编译支持进行环境配置。 在Debian/Ubuntu中：
+
+#+BEGIN_EXAMPLE
+    $ sudo apt-get build-dep libreoffice
+#+END_EXAMPLE
+
+在Fedora中：
+
+#+BEGIN_EXAMPLE
+    $ su -c 'yum-builddep libreoffice'
+#+END_EXAMPLE
+
+* 配置和编译
+
+简单编译可以使用：
+
+#+BEGIN_EXAMPLE
+    $ #进入项目根目录
+
+    $ ./autogen.sh #检查编译环境，生成编译配置文件
+
+    $ make #编译
+#+END_EXAMPLE
+
+推荐使用如下命令进行配置：
+
+#+BEGIN_EXAMPLE
+    $ ./autogen.sh --disable-tdeab \
+    --disable-kdeab --disable-postgresql-sdbc \
+    --disable-firebird-sdbc --with-lang=zh-CN \
+    --enable-gstreamer --disable-gstreamer-0-10 
+#+END_EXAMPLE
+
+可以将如上代码放入脚本文件中。 可以使用：
+
+#+BEGIN_EXAMPLE
+    $ ./autogen.sh --help
+#+END_EXAMPLE
+
+查看支持哪些选项。 编译完成后可以直接在项目根目录下启动程序：
+
+#+BEGIN_EXAMPLE
+    $ instdir/program/soffice --writer
+#+END_EXAMPLE
+
+* 加速编译
+
+用*ccache缓存*编译器生成的结果，这可以节省重新编译项目时的时间。
+使用系统库中的包就可以装好ccache。 在Debian/Ubuntu中：
+
+#+BEGIN_EXAMPLE
+    $ apt-cache search ccache #查找相应的包
+
+    $ sudo apt-get install ccache #安装相应的包
+#+END_EXAMPLE
+
+在Fedora中：
+
+#+BEGIN_EXAMPLE
+    $ su -c 'yum search ccache' #查找相应的包
+
+    $ su -c 'yum install ccache' #安装相应的包
+#+END_EXAMPLE
+
+装好后默认就可以使用了。可做如下配置
+修改ccach缓存路径(在用户的.bashrc中添加):
+
+#+BEGIN_EXAMPLE
+    $export CCACHE_DIR=/data/ccache_data #
+#+END_EXAMPLE
+
+如果磁盘空间紧张可以启用ccache的压缩缓存：
+
+#+BEGIN_EXAMPLE
+    $ export CCACHE_COMPRESS=1
+#+END_EXAMPLE
+
+修改ccache使用32G的缓存空间:
+
+#+BEGIN_EXAMPLE
+    $ ccache --max-size 32G #
+#+END_EXAMPLE
+
+用*Icecream做分布式编译*，需要有多台机器可以访问，且需要一台机器做服务器（做调度）。Libreoffice对Icecream做了内建支持，使用系统库中的包就可以装好icecream。只需要在配置时./autogen.sh后再附加上：
+
+#+BEGIN_EXAMPLE
+    --enable-icecream
+#+END_EXAMPLE
+
+配置时默认会查找*/opt/icecream/*下的编译器，系统包安装其到了/usr/sbin/，为此需要建立一个符号链接
+
+#+BEGIN_EXAMPLE
+    $ sudo ln -s /usr/sbin/ /opt/icecream
+#+END_EXAMPLE
+
+服务器的机器需要*手动启用调度程序*，也可以将下行放入自启动脚本中：
+
+#+BEGIN_EXAMPLE
+    $ icecc-scheduler -d
+#+END_EXAMPLE
+
+客户端程序默认就启动了守护程序，如果没有启动可以直接执行：
+
+#+BEGIN_EXAMPLE
+    $ iceccd -d
+#+END_EXAMPLE
+
