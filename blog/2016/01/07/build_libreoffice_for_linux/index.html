@@ -32,8 +32,11 @@
 <div class="post">
 <h1>Linux下编译Libreoffice</h1>
 <p>
-项目比较大，编译时间比较长。建议代码放在至少有30G剩余空间的磁盘位置。 #
-更新系统（重要） 先更新系统，以防装了编译环境后系统出现问题。
+项目比较大，编译时间比较长。建议代码放在至少有30G剩余空间的磁盘位置。
+更新系统（*重要*） 先更新系统（*更新后要重启*），以防装了编译环境后系统出现问题。
+</p>
+
+<p>
 在Debian/Ubuntu中：
 </p>
 
@@ -54,7 +57,11 @@ su -c 'yum update'
 <h2 id="sec-1">编译环境</h2>
 <div class="outline-text-2" id="text-1">
 <p>
-最简单的方式使用系统提供的编译支持进行环境配置。 在Debian/Ubuntu中：
+最简单的方式使用系统提供的编译支持进行环境配置（*安装后重启*）。 
+</p>
+
+<p>
+在Debian/Ubuntu中：
 </p>
 
 <pre class="example">
@@ -120,7 +127,11 @@ $ instdir/program/soffice --writer
 <div class="outline-text-2" id="text-3">
 <p>
 用*ccache缓存*编译器生成的结果，这可以节省重新编译项目时的时间。
-使用系统库中的包就可以装好ccache。 在Debian/Ubuntu中：
+使用系统库中的包就可以装好ccache。 
+</p>
+
+<p>
+在Debian/Ubuntu中：
 </p>
 
 <pre class="example">
@@ -203,7 +214,7 @@ $ iceccd -d
     <div>
       <div class="post-meta">
         <span title="post date" class="post-info">2016-01-07</span>
-        <span title="last modification date" class="post-info">2016-01-11</span>
+        <span title="last modification date" class="post-info">2016-01-12</span>
         <span title="tags" class="post-info"><a href="/tags/libreoffice/">libreoffice</a>, <a href="/tags/ubuntu/">ubuntu</a></span>
         <span title="author" class="post-info">ccsheller</span>
       </div>
