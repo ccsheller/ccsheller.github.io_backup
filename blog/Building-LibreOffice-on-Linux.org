@@ -13,6 +13,7 @@
 
 项目比较大，编译时间比较长。建议代码放在至少有30G剩余空间的磁盘位置。
 更新系统（*重要*） 先更新系统（*更新后要重启*），以防装了编译环境后系统出现问题。
+
 在Debian/Ubuntu中：
 
 #+BEGIN_EXAMPLE
@@ -28,7 +29,9 @@
 
 * 编译环境
 
-最简单的方式使用系统提供的编译支持进行环境配置（*安装后重启*）。 在Debian/Ubuntu中：
+最简单的方式使用系统提供的编译支持进行环境配置（*安装后重启*）。 
+
+在Debian/Ubuntu中：
 
 #+BEGIN_EXAMPLE
     $ sudo apt-get build-dep libreoffice
@@ -76,7 +79,9 @@
 * 加速编译
 
 用*ccache缓存*编译器生成的结果，这可以节省重新编译项目时的时间。
-使用系统库中的包就可以装好ccache。 在Debian/Ubuntu中：
+使用系统库中的包就可以装好ccache。 
+
+在Debian/Ubuntu中：
 
 #+BEGIN_EXAMPLE
     $ apt-cache search ccache #查找相应的包
