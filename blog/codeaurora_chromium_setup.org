@@ -1,0 +1,45 @@
+#+TITLE:       codeaurora中的chromium遍译失败
+#+AUTHOR:      ccsheller
+#+EMAIL:       ccsheller@gmail.com
+#+DATE:        2016-01-27 周三
+#+URI:         /blog/%y/%m/%d/codeaurora中的chromium遍译失败
+#+KEYWORDS:    codeaurora,chromium
+#+TAGS:        codeaurora,chromium,build
+#+LANGUAGE:    en
+#+OPTIONS:     H:3 num:nil toc:nil \n:nil ::t |:t ^:nil -:nil f:t *:t <:t
+#+DESCRIPTION: <TODO: insert your description here>
+
+当我寻找chromium的资料时看到了这篇文章[[http://mogoweb.net/blog/2014/06/19/about-source-management-of-chromium-webview/][关于Chromium WebView项目的源代码管理]]（先前
+我也找到过这个博客），其中提到[[https://www.codeaurora.org/xwiki/bin/Chromium+for+Snapdragon/WebHome][Chromium Browser for Snapdragon]]。这个项目是为
+Qualcomm's Snapdragon的web做优化的，我想是否能编译出桌面版的chromium。因为他们的
+网站没被墙，那么我想做chromium的镜像就不需要了，且有提交纪录。
+
+说干就干，下代码。参考他们的介绍文章，他们还贴心的提供了中国的镜像[[https://www.codeaurora.org/xwiki/bin/Support/CodeAuroraMirrors][CAF Mirror
+Information]]，下载挺快，其主库就下好了。我以为结束了，没想到接着显示有86个包要下
+载。这比官方的还迅猛。没办法只有下，其中断过几次，不过每个包是一个git库，再下不
+需要重头开始。特别是webkit，好像就了10多个g，
+我想是否可以使用no-history来减小下载量，没看到效果。我看空间不够，还删了几天前下
+的chromium官方所有.git文件。本来这分区有50g（固态硬盘，在虚拟机中单独挂的分区），
+开始下这个时有23g的剩余，我想应该下代码够了，哪知道完全不够。后面下v8代码规模也
+不小。几经波折，产生流量40多个g，占用磁盘30多个g，空间不够还删了先前编绎的
+chromium所有生成文件。
+
+代码下完了，开始编译。执行gn，说找不到gn.py。几经查找，原来要执行runhook。想这下
+应该可以编了吧。结果还是不行，说找不到BUILD.gn文件。这我就不知道怎么整了。这个项
+目的目录结构和官方的有些微的差别。以我的了解是不可能补全BUILD.gn文件的，看
+来只能作罢。
+
+其中有些下载链接还是需要想点办法，比如：
+
+#+BEGIN_QUOTE
+1e100.net （有个包会要到这个上面去下，有时可以访问，有时不行）
+https://chromium.googlesource.com/chromium/llvm-project/libcxxabi.git/ （v8)
+https://chromium.googlesource.com/chromium/llvm-project/cfe/tools/clang-format.git
+(src/buildtools/third_party/libc++）
+#+END_QUOTE
+
+我平时比较忙，作chromium代码镜像的事是没法完成了。我也试过了chromium开源的第一版，
+我能查到的资料都是介绍windows下编译的，官方第一版也只支持了windows。要找到第一个
+可以linux下编译的代码和编译的教程估计需要很多时间。
+
+就写这点字，我都要分几天来写，语句不通，能回忆起什么写什么。TT
