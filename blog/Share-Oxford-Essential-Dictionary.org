@@ -1,0 +1,40 @@
+#+TITLE:       Oxford Essential Dictionary 分享
+#+AUTHOR:      ccsheller
+#+EMAIL:       ccsheller@gmail.com
+#+DATE:        2016-02-01 周一
+#+URI:         /blog/%y/%m/%d/oxford-essential-dictionary-分享
+#+KEYWORDS:    Oxford Essential Dictionary,英语
+#+TAGS:        英语
+#+LANGUAGE:    en
+#+OPTIONS:     H:3 num:nil toc:nil \n:nil ::t |:t ^:nil -:nil f:t *:t <:t
+#+DESCRIPTION: Oxford Essential Dictionary的安装包
+
+国内出版的《牛津初阶英汉双解词典》没有带光盘，买了好久，也听说台湾出的带了光盘。
+曾经找了不少次，都没找到。这次决定将其下载下来。
+
+搜索中文没有结果，搜索英文也没有找到。那只有找是否有人分享种子，我想到最知名的分
+享种子的站——海*湾，只有一条，那也只能试试。我们有迅雷，应该没问题。
+
+用了网上分享的帐号，第一天只下了100多兆，就没速度，其中它很快就离线完了。第二
+天速度很快，但是把我第一天的数据清空后再下载的，一次就下载好了。
+
+为了方便国内学习者，现分享出来。不保证没有病毒，不保证数据的完整性，本人也没有版
+权，仅供学习。我装在了虚拟机中，可以正常使用，其中询问是否安装quicktime和
+quickfind，请自行判断。安装后就是一个词典了，其中单词和大部分例句都有发音，解释
+没有发音，它还提供了一些其他的功能。内容和书上的是一样的，只有英文部分，因为这个
+版本本来就是英文版带的。
+
+#+BEGIN_QUOTE
+链接：http://pan.baidu.com/s/1eRyLQXs
+密码：s26k
+#+END_QUOTE
+
+上传时是秒传，说明有人已经上传过了，当时我没用Oxford Essential Dictionary
+site:pan.baidu.com。今天试了下，的确有一条分享。看了下大小584.4M，好像是解压后
+iso的大小，然后又压缩的。我下载的压缩包只有555.52M，看来上传的人没有分享出来。
+
+其他人的分享
+
+#+BEGIN_QUOTE
+http://pan.baidu.com/share/link?uk=2030541836&shareid=2642088315&third=0&adapt=pc&fr=ftw
+#+END_QUOTE
