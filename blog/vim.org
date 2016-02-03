@@ -1,0 +1,44 @@
+#+TITLE:       vim收集和整理
+#+AUTHOR:      ccsheller
+#+EMAIL:       ccsheller@gmail.com
+#+DATE:        2016-02-03 周三
+#+URI:         /blog/%y/%m/%d/vim收集和整理
+#+KEYWORDS:    vim
+#+TAGS:        vim
+#+LANGUAGE:    en
+#+OPTIONS:     H:3 num:nil toc:nil \n:nil ::t |:t ^:nil -:nil f:t *:t <:t
+#+DESCRIPTION: <TODO: insert your description here>
+
+用了emacs，才觉得vim的好。emacs快捷键太多，启动有点慢。现在写代码用emacs，有时改
+配置，写个脚本会用vim。
+
+将平时vim的使用整理到此文中。
+
+装了gvim后找不到其配置文件，网上一般都介绍改vimrc或_vimrc，但是很少介绍这些配置
+文件放在了何处。只要在vim命令模式中输入*version*，就可以看到“系统 vimrc 文件”和“用
+户 vimrc 文件”的路径。
+
+gvim中文乱码解决方案，照抄了[[http://rongmayisheng.com/post/windows%E4%B8%8Bgvim%E4%B8%AD%E6%96%87%E4%B9%B1%E7%A0%81%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88][windows下gvim中文乱码解决方案]]
+
+#+BEGIN_SRC sh
+  set encoding=utf-8
+  set fileencodings=utf-8,chinese
+  set termencoding=utf-8
+  if has("win32")
+  set fileencoding=chinese
+  else
+  set fileencoding=utf-8
+  endif
+  "解决菜单乱码
+  source $VIMRUNTIME/delmenu.vim
+  source $VIMRUNTIME/menu.vim
+  "解决consle输出乱码
+  language messages zh_CN.utf-8
+#+END_SRC
+
+查询光标下字符的编码，附带[[http://www.utf8-chartable.de/unicode-utf8-table.pl][UTF-8 encoding table and Unicode characters]]
+
+#+BEGIN_QUOTE
+ga 使用十进制，十六进制，八进制输出字符的ascii值
+g8 假定字符是utf-8编码并输出其使用字节的十六进制值
+#+END_QUOTE
