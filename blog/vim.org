@@ -15,7 +15,7 @@
 将平时vim的使用整理到此文中。
 
 装了gvim后找不到其配置文件，网上一般都介绍改vimrc或_vimrc，但是很少介绍这些配置
-文件放在了何处。只要在vim命令模式中输入*version*，就可以看到“系统 vimrc 文件”和“用
+文件放在了何处。只要在vim命令模式中输入 *version* ，就可以看到“系统 vimrc 文件”和“用
 户 vimrc 文件”的路径。
 
 gvim中文乱码解决方案，照抄了[[http://rongmayisheng.com/post/windows%E4%B8%8Bgvim%E4%B8%AD%E6%96%87%E4%B9%B1%E7%A0%81%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88][windows下gvim中文乱码解决方案]]
@@ -40,5 +40,6 @@ gvim中文乱码解决方案，照抄了[[http://rongmayisheng.com/post/windows%
 
 #+BEGIN_QUOTE
 ga 使用十进制，十六进制，八进制输出字符的ascii值
+
 g8 假定字符是utf-8编码并输出其使用字节的十六进制值
 #+END_QUOTE
