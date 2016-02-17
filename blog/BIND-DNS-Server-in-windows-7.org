@@ -1,0 +1,140 @@
+#+TITLE:       BIND在Windows 7中的使用
+#+AUTHOR:      ccsheller
+#+EMAIL:       ccsheller@gmail.com
+#+DATE:        2016-02-17 周三
+#+URI:         /blog/%y/%m/%d/bind在windows-7中的使用
+#+KEYWORDS:    bind, dns
+#+TAGS:        bind, dns
+#+LANGUAGE:    en
+#+OPTIONS:     H:3 num:nil toc:nil \n:nil ::t |:t ^:nil -:nil f:t *:t <:t
+#+DESCRIPTION: <TODO: insert your description here>
+
+* 起因
+
+由于公司网络使用DHCP分配IP，这样会发生IP地址变化的问题。这不过个年，大家的IP都刷
+新了。对于个人没问题，但是对于服务器（自己管理的PC机）这就很麻烦了，大家都要更新
+配置到新IP（我们有git，ftp，www）。为此我
+想通过配个DNS服务器来解决这个问题。因此需要找一个不会关机或者IP很可能不会变的机
+器，现在公司机房中有一台我们使用的虚拟机，装的是windows 7系统。查了下windows 7是
+不支持内置的dns服务的。找到PowerDNS，但是它已经不支持windows系统了。最后找到BIND，
+通过几番查找终于配置可用了。
+
+* 下载
+
+[[https://ftp.isc.org/isc/bind9/][bind9]] 最新的下载下来。
+
+* 安装
+
+参照[[http://drupalmotion.com/article/dev-environment-install-and-configure-bind-dns-server-windows-7][Dev Environment: Install and configure BIND DNS Server in Windows 7]] 安
+装，解压，右键管理员运行BINDInstall.exe，在界面中填上密码，点击Install。其被默认
+安装到了C:\Program Files\ISC BIND 9目录。（其中安装时填的账号密码，不知道有什么
+用）。
+
+* 配置
+
+  1. 添加环境变量，给PATH值末尾添加 ;"C:\Program Files\ISC BIND 9\bin"
+  2. 管理员启动cmd，在终编中切换工作目录到C:\Program Files\ISC BIND 9\etc，执行
+     rndc-confgen -a 生成rndc.key
+  3. C:\Program Files\ISC BIND 9文件夹的权限修改，将Users用户的权限改为完全控制，
+     参考了[[http://www.zytrax.com/books/dns/ch5/win2k.html][Chapter 5. Bind on Win2k and NT 4.0]]。(这样做可能留下了安全隐患）
+  4. 编辑etc文件夹下的named.conf（没有就创建一个），改成如下内容：
+     #+BEGIN_SRC sh
+       options {        
+         directory "C:\Program Files\ISC BIND 9\etc";
+         allow-transfer { none; };
+         allow-query     { any; };
+         forwarders {
+                   114.114.114.114;
+                   223.5.5.5;
+                   208.67.222.222;
+         };
+         forward only;
+       };
+
+       //zone "." {
+       //      type hint;
+       //      file "named.root";
+       //};
+
+       zone "ccsheller.org" in {
+               type master;
+               file "ccsheller.org.zone";
+               allow-update { none; };
+               forwarders {};
+       };
+
+       logging{
+         channel my_log{
+           file "named.log" versions 3 size 2m;
+           severity info;
+           print-time yes;
+           print-severity yes;
+           print-category yes;
+         };
+         category default{
+           my_log;
+         };
+       };     
+     #+END_SRC
+     
+     其中//后面的是注释。
+
+     其中forwarders表示转发器的地址，当本地zone没有定义请求的域时,将请求转发到转
+     发器的地址中进行查询。
+
+     其中forward only表示，当转发器的地址无法联系时，不要进行根域名服务器的请求
+     查询，我觉得不需要root查询就把zone "."给注释掉了。
+
+     其中allow-query     { any; }; 表示允许任何人的机器都可以查询，文档中说明这
+     个是默认值，但是我不加这个，转发功能不起作用。参考了[[http://opjasee.com/2014/04/21/start-use-dns.html][使用Bind搭建内网DNS]]。
+
+     其中ccsheller.org就是你要进行自定义解析的域名了。其中的forwarders {};表示此域不进
+     行转发，file 对应的文件就定义了域名下各个子域对应的ip。
+
+     其中logging就是定义的日志了。
+
+  5. 编辑ccsheller.org.zone，如下内容：
+     #+BEGIN_SRC sh
+       $TTL 86400
+       $ORIGIN ccsheller.org.
+       @       IN  SOA ns1 root(
+                   2013031902      ;serial
+                   12h     ;refresh
+                   7200        ;retry
+                   604800      ;expire
+                   86400       ;mininum
+                   )
+                   NS  ns1.ccsheller.org.
+       ns1     IN  A   192.168.0.152
+       git     IN  A   192.168.0.116
+       www     IN  A   192.168.0.116
+       ftp     IN  A   192.168.0.114
+     #+END_SRC
+
+     其参考了[[http://www.cnblogs.com/cobbliu/archive/2013/03/19/2970311.html][DNS开源服务器BIND最小配置详解]]。
+
+* 启动dns服务
+
+  在计算机管理--服务中，找到“ISC BIND”将其启动类型改为自动，然后启动它。如果没
+  有问题就能正常启动了。
+
+* 客户机配置
+
+  当dns服务器启动后，客户机就可能配置dns服务器地址ip为自定义的dns服务器
+
+* 有用的命令
+  
+  当修改了dns服务器的配置后，可以不重启服务（当没效果，或你喜好，重启也没事），
+  使用命令（需要管理员权限）
+
+  #+BEGIN_SRC sh
+    ipconfig /flushdns
+    rndc reload
+    rndc flush //根据情况使用
+  #+END_SRC
+
+* 其他参考
+
+[[http://www.zytrax.com/books/dns/][DNS for Rocket Scientists]]
+[[http://blog.sina.com.cn/s/blog_64a8c8930100zwga.html][在win7 x64上使用bind搭建DNS服务器]]
+
