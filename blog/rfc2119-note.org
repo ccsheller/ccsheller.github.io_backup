@@ -12,11 +12,11 @@
 在许多标准文档中，使用了一些关键词来指定规格的要求级别。此文档解释了这些关键词的
 含义。
 
-| MUST, REQUIRED, SHALL       | 绝对要求这样做                                                  |
-| MUST NOT, SHALL NOT         | 绝对禁止这样做                                                  |
-| SHOULD, RECOMMENTED         | 一般情况下要求这样做，特殊情况下禁止这样做 。作选择前需仔细衡量 |
-| SHOULD NOT, NOT RECOMMENTED | 一般情况下禁止这样做，特殊情况下可以这样做，作选择前需仔细衡量  |
-| MAY, OPTIONAL               | 可选项，跟据喜好选择。可能要和其他厂商作好互操作                |
+| MUST, REQUIRED, SHALL       | 绝对要求这样做。                                                 |
+| MUST NOT, SHALL NOT         | 绝对禁止这样做。                                                 |
+| SHOULD, RECOMMENTED         | 一般情况下要求这样做，特殊情况下禁止这样做 。作选择前需仔细衡量。 |
+| SHOULD NOT, NOT RECOMMENTED | 一般情况下禁止这样做，特殊情况下可以这样做，作选择前需仔细衡量。 |
+| MAY, OPTIONAL               | 可选项，跟据喜好选择。可能要和其他厂商作好互操作。               |
 
 
 
