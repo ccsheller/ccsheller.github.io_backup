@@ -4,14 +4,28 @@
     <title>代码考古</title>
     <link>http://ccshell.com/</link>
     <description>探究源码</description>
-    <pubDate>周四, 25 二月 2016 17:55:43 中国标准时间</pubDate>
-    <lastBuildDate>周四, 25 二月 2016 17:55:43 中国标准时间</lastBuildDate>
+    <pubDate>周日, 06 三月 2016 22:53:22 中国标准时间</pubDate>
+    <lastBuildDate>周日, 06 三月 2016 22:53:22 中国标准时间</lastBuildDate>
     <docs>http://www.rssboard.org/rss-specification</docs>
     <generator>Org-page static site generator (https://github.com/kelvinh/org-page)</generator>
     <item>
+      <title>linux使用记录</title>
+      <link>http://ccshell.com/blog/2016/02/18/linux使用记录</link>
+      <description><![CDATA[<TODO: insert your description here>]]></description>
+      <pubDate>2016-03-06</pubDate>
+      <guid>http://ccshell.com/blog/2016/02/18/linux使用记录</guid>
+    </item>
+    <item>
+      <title>vim收集和整理</title>
+      <link>http://ccshell.com/blog/2016/02/03/vim收集和整理</link>
+      <description><![CDATA[]]></description>
+      <pubDate>2016-03-06</pubDate>
+      <guid>http://ccshell.com/blog/2016/02/03/vim收集和整理</guid>
+    </item>
+    <item>
       <title>rfc2119 笔记</title>
       <link>http://ccshell.com/blog/2016/02/25/rfc2119-笔记</link>
-      <description><![CDATA[<TODO: insert your description here>]]></description>
+      <description><![CDATA[]]></description>
       <pubDate>2016-02-25</pubDate>
       <guid>http://ccshell.com/blog/2016/02/25/rfc2119-笔记</guid>
     </item>
@@ -21,13 +35,6 @@
       <description><![CDATA[]]></description>
       <pubDate>2016-02-17</pubDate>
       <guid>http://ccshell.com/blog/2016/02/17/bind在windows-7中的使用</guid>
-    </item>
-    <item>
-      <title>vim收集和整理</title>
-      <link>http://ccshell.com/blog/2016/02/03/vim收集和整理</link>
-      <description><![CDATA[]]></description>
-      <pubDate>2016-02-03</pubDate>
-      <guid>http://ccshell.com/blog/2016/02/03/vim收集和整理</guid>
     </item>
     <item>
       <title>Oxford Essential Dictionary 分享</title>
