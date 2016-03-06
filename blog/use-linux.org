@@ -1,0 +1,21 @@
+#+TITLE:       linux使用记录
+#+AUTHOR:      ccsheller
+#+EMAIL:       ccsheller@gmail.com
+#+DATE:        2016-02-18 周四
+#+URI:         /blog/%y/%m/%d/linux使用记录
+#+KEYWORDS:    linux
+#+TAGS:        linux,ubuntu,fedora
+#+LANGUAGE:    en
+#+OPTIONS:     H:3 num:nil toc:nil \n:nil ::t |:t ^:nil -:nil f:t *:t <:t
+#+DESCRIPTION: <TODO: insert your description here>
+
+* 通用
+  
+  #+BEGIN_SRC sh
+    xvfb-run #给应用程序模拟出一个X server，便于在没有对应设备的机器上运行一些程序
+
+    convmv #转换文件名编码
+    enconv #转换文件内容编码
+    iconv #转换文件内容编码，较安全
+    enca #查看文件内容编码
+  #+END_SRC
