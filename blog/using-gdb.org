@@ -1,0 +1,57 @@
+#+TITLE:       gdb使用
+#+AUTHOR:      ccsheller
+#+EMAIL:       ccsheller@gmail.com
+#+DATE:        2016-03-13 周日
+#+URI:         /blog/%y/%m/%d/gdb使用
+#+KEYWORDS:    gdb
+#+TAGS:        gdb
+#+LANGUAGE:    en
+#+OPTIONS:     H:3 num:nil toc:nil \n:nil ::t |:t ^:nil -:nil f:t *:t <:t
+#+DESCRIPTION: <TODO: insert your description here>
+
+* gdb可视化调试
+
+#+BEGIN_SRC sh
+gdbtui 
+#or
+gdb -tui 
+#+END_SRC
+使用上面的命令加被调试应用，将启动tui模式。界面的上半部分显示当前的源码，下半部
+分可以输入调试命令和显示调试输出。
+
+使用Ctrl+x，Ctrl+a可以在tui和普通模式间切换。中断应用后，Ctrl+p切换上一个命令，
+Ctrl+n切换下一个命令。上箭头键向上查看源码，下箭头键向下查看源码。
+
+注：gdb启动后，界面尺寸不能更改。否则可视区域会变成很小。
+
+当然可以用其他前端进行可视化调试。如：
+
+#+BEGIN_SRC sh
+cgdb
+#+END_SRC
+或
+#+BEGIN_SRC sh
+gud-gdb #emacs中的命令
+#+END_SRC
+
+cgdb使用比较方便，但是对unicode的支持不够，输出不了中文。
+
+我现在主要用emacs中的gud-gdb调试。这个能实现其它前端的功能，但是它能分屏；能在源
+码buffer和调试buffer中自由切换；最重要的是它能记录下所有的调试输入和输出，因为一
+切都在buffer中。当然它也有缺点。
+
+* GDB保存断点
+
+利用python可以实现gdb的断点保存功能
+
+代码[[https://github.com/ccsheller/Snippets/tree/master/gdb][savebreakpoint.py]]
+
+现在此功能gdb已经内置了，直接使用
+
+#+BEGIN_SRC sh
+    save breakpoints [filename]
+#+END_SRC
+
+
+
+ 
