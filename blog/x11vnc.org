@@ -1,0 +1,82 @@
+#+TITLE:       x11vnc的使用
+#+AUTHOR:      ccsheller
+#+EMAIL:       ccsheller@gmail.com
+#+DATE:        2016-06-20 周一
+#+URI:         /blog/%y/%m/%d/x11vnc的使用
+#+KEYWORDS:    x11vnc
+#+TAGS:        x11vnc,remote,linux,远程
+#+LANGUAGE:    en
+#+OPTIONS:     H:3 num:nil toc:nil \n:nil ::t |:t ^:nil -:nil f:t *:t <:t
+#+DESCRIPTION: linux下方便的远程桌面软件
+
+* 背景
+
+由于要使用远程机器中的gui程序，但是ssh -X上去后所有的gui程序都不能切换输入法。
+在没找到解决输入法切换方案后，只有找远程桌面服务端了。无奈忘记了云端笔记的密码，
+想不起来以前用的什么软件了，记得有两款比较好。其中找到了x11vnc，但是没用起来。
+前天再次尝试笔记密码，终于进入。原来以前用的就是x11vnc，同时想起另一款比较不错的
+软件nomachine。
+
+照着笔记打入命令（ssh -X登入）
+
+#+BEGIN_EXAMPLE
+  x11vnc -storepasswd #设定密码
+  x11vnc -usepw -xkb -forever #客户端就可以使用密码访问了
+  # -xkb 确保能使用shift键 或者使用选用 -nomodtweak
+  # -forever 保持侦听状态
+#+END_EXAMPLE
+
+总是报错x11 mit shared memory attach failed。
+
+应该是验证和DISPLAY有关系。参考网上，使用auth加DISPLAY成功了一次，但是分辨不正常。
+由于机器在内网，登入进去后，总是弹crash reporter，于是我想清理crash，结果我删成
+了cache,然后x11vnc就启动不了。没有重启，服务器不好随便重启。
+使用ssh -t也不行，看来只能让x11vnc自启动，然后连接上去。
+
+参考文档，将x11vnc加入服务，然后就可以远程访问了。
+
+（访问后，分辨率正常，还可以全屏。只是系统自带的ibus输入法太难用，我换了fcitx，卸载ibus后，
+再登录，分辨率就变成1024*768大小了，怎么都不能调整了。记得以前卸载后系统设定就显示
+不全了，一查看果然不行了。重新安装了unity不行，重新装了ubuntu-desktop也不行。搞
+不定，就这样了。远程桌面不常用。）
+
+* x11vnc的使用
+
+#+BEGIN_SRC sh
+  sudo apt-get install x11vnc #安装
+  x11vnc -storepasswd #设置密码
+  #设定开机启动，选用upstart方式
+  #不要用systemd方式，ubuntu 14.04不支持。
+  #本来systemd据说是趋势，但是我开始配置后，跟本没有对应的启动命令。
+  #最终还是用了upstart
+  sudo vim /etc/init/x11vnc.conf
+
+  #输入如下内容，USERNAME换成前面设置密码的用户名
+  description "x11vnc"
+
+  start on runlevel [2345]
+  stop on runlevel [^2345]
+
+  console log
+
+  respawn
+  respawn limit 20 5
+
+  exec /usr/bin/x11vnc -auth guess -forever -loop -noxdamage -repeat -rfbauth /home/USERNAME/.vnc/passwd -rfbport 5900 -shared
+
+  #启动服务
+  sudo start x11vnc
+#+END_SRC
+
+* 后记
+
+以前尝试过几款远程桌面软件但是都不好用，最终觉得nomachine可以满足需求。
+用了一段时间，找到了x11vnc，觉得这样更方便。后来有时要在家里访问公司电脑，
+有时会用teamviewer。其实我只要运行远程的gui程序就好了，不需要一个完整的桌面，
+发现xhost ssh 加设置DISPLAY变量就可以执行远端gui程序了。现在一直使用ssh -X，
+这个是最简单的方式。
+
+* 参考
+
+[[https://help.ubuntu.com/community/VNC/Servers][VNC/Servers]]
+[[http://askubuntu.com/questions/229989/how-to-setup-x11vnc-to-access-with-graphical-login-screen][How to setup x11vnc to access with graphical login screen?]]
