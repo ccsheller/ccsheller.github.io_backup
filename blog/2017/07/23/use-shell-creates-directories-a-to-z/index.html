@@ -1,9 +1,11 @@
 <!DOCTYPE html>
 <html lang="en-us">
   <head>
-    <title>Tag: bind - 代码考古</title>
+    <title>一行shell实现在当前目录创建A到Z的目录 - 代码考古</title>
     <meta charset="utf-8" />
     <meta name="author" content="ccsheller" />
+    <meta name="description" content="&lt;TODO: insert your description here&gt;" />
+    <meta name="keywords" content="shell" />
     <link rel="stylesheet" href="/media/css/main.css" type="text/css">
     <link rel="stylesheet" href="/media/css/prettify.css" type="text/css">
   </head>
@@ -25,15 +27,55 @@
         </form>
       </header>
     </div>
+
+<div>
+<div class="post">
+<h1>一行shell实现在当前目录创建A到Z的目录</h1>
+<pre class="example">
+for var in `seq 65 90`; do var=$(echo "ibase=10; obase=8; ${var}"|bc);printf "\\${var}"|xargs mkdir; done
+</pre>
+
+<p>
+命令讲解
+</p>
+
+<pre class="example">
+seq 65 90 生成65到90的序列。65对应A的ascii的A
+
+echo "ibase=10; obase=8; ${var}"|bc 将十进制值转换成八进制
+
+$(...) 一种命令替换方法
+
+printf "\\${var}" 将八进制的值转换成字符
+</pre>
+
+</div>
+</div>
     <div>
-      <div class="post">
-        <h1>Tag: bind</h1>
-        <ul class="org-ul">
-          <li><a href="/blog/2016/02/17/bind在windows-7中的使用">BIND在Windows 7中的使用</a></li>
-        </ul>
+      <div class="post-meta">
+        <span title="post date" class="post-info">2017-07-23</span>
+        <span title="last modification date" class="post-info">2017-07-23</span>
+        <span title="tags" class="post-info"><a href="/tags/shell/">shell</a></span>
+        <span title="author" class="post-info">ccsheller</span>
       </div>
-    </div>
-    <div>
+      <section>
+        <h1>Comments</h1>
+        <div id="disqus_thread"></div>
+        <script type="text/javascript">
+          //var disqus_developer = 1;
+          var disqus_identifier = "/blog/2017/07/23/use-shell-creates-directories-a-to-z";
+          var disqus_url = "http://ccshell.com/blog/2017/07/23/use-shell-creates-directories-a-to-z";
+          var disqus_shortname = 'ccshell';
+          /* * * DON'T EDIT BELOW THIS LINE * * */
+          (function() {
+          var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+          dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+          (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+          })();
+        </script>
+        <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+        <a href="//disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+      </section>
       <script src="//code.jquery.com/jquery-latest.min.js"></script>
       <script src="https://cdnjs.cloudflare.com/ajax/libs/prettify/r298/prettify.js"></script>
       <script src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
@@ -58,5 +100,6 @@
         </p>
       </div>
     </div>
+
   </body>
 </html>
