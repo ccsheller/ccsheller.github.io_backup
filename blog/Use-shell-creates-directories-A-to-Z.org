@@ -1,0 +1,26 @@
+#+TITLE:       一行shell实现在当前目录创建A到Z的目录
+#+AUTHOR:      ccsheller
+#+EMAIL:       ccsheller@gmail.com
+#+DATE:        2017-07-23 周日
+#+URI:         /blog/%y/%m/%d/use-shell-creates-directories-a-to-z
+#+KEYWORDS:    shell
+#+TAGS:        shell
+#+LANGUAGE:    en
+#+OPTIONS:     H:3 num:nil toc:nil \n:nil ::t |:t ^:nil -:nil f:t *:t <:t
+#+DESCRIPTION: <TODO: insert your description here>
+
+#+BEGIN_EXAMPLE
+    for var in `seq 65 90`; do var=$(echo "ibase=10; obase=8; ${var}"|bc);printf "\\${var}"|xargs mkdir; done
+#+END_EXAMPLE
+
+命令讲解
+
+#+BEGIN_EXAMPLE
+    seq 65 90 生成65到90的序列。65对应A的ascii的A
+
+    echo "ibase=10; obase=8; ${var}"|bc 将十进制值转换成八进制
+
+    $(...) 一种命令替换方法
+
+    printf "\\${var}" 将八进制的值转换成字符
+#+END_EXAMPLE
