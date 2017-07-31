@@ -1,0 +1,41 @@
+#+TITLE:       调试 core 文件
+#+AUTHOR:      ccsheller
+#+EMAIL:       ccsheller@gmail.com
+#+DATE:        2017-07-25 二
+#+URI:         /blog/%y/%m/%d/调试 core 文件
+#+KEYWORDS:    gdb,core
+#+TAGS:        gdb
+#+LANGUAGE:    en
+#+OPTIONS:     H:3 num:nil toc:nil \n:nil ::t |:t ^:nil -:nil f:t *:t <:t
+#+DESCRIPTION: 分析 core 文件的过程
+
+运行环境 ubuntu
+让系统产生 core 文件，终端中执行：
+
+#+BEGIN_SRC sh
+$ulimit -c unlimited
+#echo "core.%e.%p" >/proc/sys/kernel/core_pattern
+#+END_SRC
+
+这样程序崩溃将在当前执行目录生成 core 文件。
+
+#+BEGIN_SRC sh
+(gdb) core-file core.name.id
+(gdb) set solib-search-path path/to/libdir
+#+END_SRC
+
+这样就可以看到函数调用信息了。
+
+其中 solib-search-path 用于指定 gdb 查找动态库符号文件的搜索路径。可以指定多个路径，
+用:分隔。
+
+同时还有另一个类似的选项 solib-absolute-prefix，其用于指定被搜索文件路径的前缀。
+只可指定一个。
+比如要查找的库在/path/lib/lib.so.3，但是本地此库放在了
+/home/name/path/lib/lib.so.3。那么可以如下设置
+
+#+BEGIN_SRC sh
+(gdb) set solib-absolute-prefix /home/name
+#+END_SRC
+
+这样 gdb 就能找到对应的库了。
