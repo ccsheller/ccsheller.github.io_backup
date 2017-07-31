@@ -32,69 +32,42 @@
 <div class="post">
 <h1>chromium源码</h1>
 
-<div id="outline-container-org5f29f97" class="outline-2">
-<h2 id="org5f29f97">源起</h2>
-<div class="outline-text-2" id="text-org5f29f97">
+<div id="outline-container-org4b4cbe0" class="outline-2">
+<h2 id="org4b4cbe0">源起</h2>
+<div class="outline-text-2" id="text-org4b4cbe0">
 <p>
-最近工作需要参考下chromium的界面实现。限于chromium代码太多，也不是说下就能下的。
-同时想到了以前看到一位仁兄做的界面精简<a href="http://www.cppblog.com/wlwlxj/archive/2011/03/20/142246.html">基于Chrome开源提取的界面开发框架开篇</a>，经
-过一翻摸索，完成了工作，这也燃起了我研究chromium代码的兴趣。
+最近工作需要参考下chromium的界面实现。限于chromium代码太多，也不是说下就能下的。同时想到了以前看到一位仁兄做的界面精简<a href="http://www.cppblog.com/wlwlxj/archive/2011/03/20/142246.html">基于Chrome开源提取的界面开发框架开篇</a>，经过一翻摸索，完成了工作，这也燃起了我研究chromium代码的兴趣。
 </p>
 
 <p>
 第一步就是下代码，现在这网络情况下个代码都好难。chromium又没有把代码放到
-github上，也没有人做镜像。不过在github上找到了<a href="https://github.com/zcbenz/chromium-source-tarball/releases">chromium-source-tarball</a>， 这个从
-大小应该是全部源码了。下载下来，第二天拷到另一台机器上解压，然后找了官方的编绎
-指导，好像不能编。同时想到是否有人下了源码包放到网盘上。经过搜索找到了<a href="http://wendal.net/2015/02/04.html">从源码编
-译Chrome(chromium)</a>，他把代码放到了网盘中，13g好像有点大，而且介绍和网盘说明不
-符。先加到自已的网盘。再找下有不有更新的和小点的，找到了<a href="http://pan.baidu.com/share/link?shareid=858820164&amp;uk=4214187892&amp;third=0&amp;dir=/source/chromium&amp;page=1&amp;adapt=pc&amp;fr=ftw#path=%2Fchromium">chromium</a>（14年的较旧了）
-和<a href="http://pan.baidu.com/share/link?shareid=707658364&amp;uk=957895371&amp;adapt=pc&amp;fr=ftw#path=%2Fnode-webkit">node-webkit</a>（15年9月）， 后面这个6g多，也比较新。那就下这个吧。
+github上，也没有人做镜像。不过在github上找到了<a href="https://github.com/zcbenz/chromium-source-tarball/releases">chromium-source-tarball</a>， 这个从大小应该是全部源码了。下载下来，第二天拷到另一台机器上解压，然后找了官方的编绎指导，好像不能编。同时想到是否有人下了源码包放到网盘上。经过搜索找到了<a href="http://wendal.net/2015/02/04.html">从源码编译Chrome(chromium)</a>，他把代码放到了网盘中，13g好像有点大，而且介绍和网盘说明不符。先加到自已的网盘。再找下有不有更新的和小点的，找到了<a href="http://pan.baidu.com/share/link?shareid=858820164&amp;uk=4214187892&amp;third=0&amp;dir=/source/chromium&amp;page=1&amp;adapt=pc&amp;fr=ftw#path=%2Fchromium">chromium</a>（14年的较旧了）和<a href="http://pan.baidu.com/share/link?shareid=707658364&amp;uk=957895371&amp;adapt=pc&amp;fr=ftw#path=%2Fnode-webkit">node-webkit</a>（15年9月）， 后面这个6g多，也比较新。那就下这个吧。
 </p>
 
 <p>
-下载后解压上vpn，参照官网文档，应该是要执行下rebase-update。看了下要下载70万多
-个object，免费vpn的流量显然不够，且还有时间限制（如果代码没问题，我想是不需要
-rebase-update的，只是代码旧点。我也就执着的想更新下）。那只有用付费vpn了。结果
-下了2-3g（已经午夜两点了）,第二天发现vpn自已断了（经过多次使用发现这vpn会在电
-脑没操作时降低速度，不知道断网是被干扰还是vpn不稳定）。那查下git是否支持断点续
-传，现在的情况好像不现实（有人提到现在有人做变通方法的断点续传，但是官网上不去。
-也有人提自已做本地的chromium git库）。那就想到是否可以减小rebase-update的下载
-量，我尝试git fetch最新的master，的确它会下载一些数据。fecth完后，我checkout到最新
-master,然后rebase-update,中途我要出门，防止断网，又下了个自动点鼠标的程序。回
-来时已经下完了，但是报错了，查资料，看文档，折腾几翻，还是报错（虽然不用下载数
-据，但就是不成功，也许我不该单独fecth)。
+下载后解压上vpn，参照官网文档，应该是要执行下rebase-update。看了下要下载70万多个object，免费vpn的流量显然不够，且还有时间限制（如果代码没问题，我想是不需要
+rebase-update的，只是代码旧点。我也就执着的想更新下）。那只有用付费vpn了。结果下了2-3g（已经午夜两点了）,第二天发现vpn自已断了（经过多次使用发现这vpn会在电脑没操作时降低速度，不知道断网是被干扰还是vpn不稳定）。那查下git是否支持断点续传，现在的情况好像不现实（有人提到现在有人做变通方法的断点续传，但是官网上不去。也有人提自已做本地的chromium git库）。那就想到是否可以减小rebase-update的下载量，我尝试git fetch最新的master，的确它会下载一些数据。fecth完后，我checkout到最新
+master,然后rebase-update,中途我要出门，防止断网，又下了个自动点鼠标的程序。回来时已经下完了，但是报错了，查资料，看文档，折腾几翻，还是报错（虽然不用下载数据，但就是不成功，也许我不该单独fecth)。
 </p>
 
 <p>
 想到linux发行版都有调试信息，装好后，可以调试，但是进不了gdb tui模式，看了下ubuntu
-装的chromium是脚本启动的，应该可以改成支持tui。但好像有些地方不能调试进去，感觉
-这种方式不好。感觉ubuntu的源码包自已编也会有困难（我以前用fedora，很多包装了调
-试信息都可以调试进去，但是ubuntu默认不行。这次工作大家都选ubuntu，也不想特例独
-行）。
+装的chromium是脚本启动的，应该可以改成支持tui。但好像有些地方不能调试进去，感觉这种方式不好。感觉ubuntu的源码包自已编也会有困难（我以前用fedora，很多包装了调试信息都可以调试进去，但是ubuntu默认不行。这次工作大家都选ubuntu，也不想特例独行）。
 </p>
 
 <p>
-同时想到fetch(depot_tools中提供的命令）是否可以更新代码.查fetch文档，没提到可
-以更新代码。执行fetch,看fetch在下数据，继续查资料，1个小时过去了，怎么还在下，
-结果我进错目录，fetch在下载整个chromium的源码。好吧，我这边也没进展，就给他下
-吧。这次下载没出错。赶紧试下update-rebase，怎么还是有70多万的objects要下载（我
-要说脏话了，才下的代码，哪有这么多东西更新，难道它要下载完每一个提交记录，因为
-我fecth 时用了no-history），经过多次重下(总断网，每次都在2-3g后断），还是没搞
-好，元旦三天就这样过去了。第二天到了公司，公司连上vpn，速度很快，但是3g时也断
-了一次，终于下完了，看了下log还是只有几条呀，不过有了tag信息，也不知道他4g下了
-些什么。
+同时想到fetch(depot_tools中提供的命令）是否可以更新代码.查fetch文档，没提到可以更新代码。执行fetch,看fetch在下数据，继续查资料，1个小时过去了，怎么还在下，结果我进错目录，fetch在下载整个chromium的源码。好吧，我这边也没进展，就给他下吧。这次下载没出错。赶紧试下update-rebase，怎么还是有70多万的objects要下载（我要说脏话了，才下的代码，哪有这么多东西更新，难道它要下载完每一个提交记录，因为我fecth 时用了no-history），经过多次重下(总断网，每次都在2-3g后断），还是没搞好，元旦三天就这样过去了。第二天到了公司，公司连上vpn，速度很快，但是3g时也断了一次，终于下完了，看了下log还是只有几条呀，不过有了tag信息，也不知道他4g下了些什么。
 </p>
 
 <p>
-配置编绎，都挺顺利（刚才忙工作的事，都不知道写到哪了）。在虚拟机中编了不到4小
-时，第二天用i5-4590机械硬盘8进程1.5小时。
+配置编绎，都挺顺利（刚才忙工作的事，都不知道写到哪了）。在虚拟机中编了不到4小时，第二天用i5-4590机械硬盘8进程1.5小时。
 </p>
 </div>
 </div>
 
-<div id="outline-container-orge4c0e87" class="outline-2">
-<h2 id="orge4c0e87">chromium 源码分享</h2>
-<div class="outline-text-2" id="text-orge4c0e87">
+<div id="outline-container-orge7a52e5" class="outline-2">
+<h2 id="orge7a52e5">chromium 源码分享</h2>
+<div class="outline-text-2" id="text-orge7a52e5">
 <p>
 鉴于代码下的这么费事，将我下载的代码分享出来，支持ubuntu 14.04.3。地址：
 </p>
@@ -108,18 +81,16 @@ c4a81e940922f9cfcecf724090c31fa4  chromium.7z.002
 </pre>
 
 <p>
-网盘有限制，分成两个了。本来压的是tar.gz,8.5g。本来想用种子上传上去，公司限制
-了bt,vpn也限制了bt。尝试几个小时都弄不好。于是用7z重新压缩，两个一共7.7g这样。
+网盘有限制，分成两个了。本来压的是tar.gz,8.5g。本来想用种子上传上去，公司限制了bt,vpn也限制了bt。尝试几个小时都弄不好。于是用7z重新压缩，两个一共7.7g这样。
 </p>
 </div>
 </div>
 
-<div id="outline-container-org172986d" class="outline-2">
-<h2 id="org172986d">编绎</h2>
-<div class="outline-text-2" id="text-org172986d">
+<div id="outline-container-orgcb495a8" class="outline-2">
+<h2 id="orgcb495a8">编绎</h2>
+<div class="outline-text-2" id="text-orgcb495a8">
 <p>
-支持ubuntu 14.04.3。下好源码，解压到一个剩余空间30g以上的分区。
-配置depot_tools的路径
+支持ubuntu 14.04.3。下好源码，解压到一个剩余空间30g以上的分区。配置depot_tools的路径
 </p>
 
 <div class="org-src-container">
@@ -194,35 +165,27 @@ $ out/Release/chrome --no-sandbox
 </div>
 </div>
 
-<div id="outline-container-orgb1935b8" class="outline-2">
-<h2 id="orgb1935b8">后记</h2>
-<div class="outline-text-2" id="text-orgb1935b8">
+<div id="outline-container-org0fd2d1c" class="outline-2">
+<h2 id="org0fd2d1c">后记</h2>
+<div class="outline-text-2" id="text-org0fd2d1c">
 <p>
-为了严谨性，我又再次下载了<a href="https://github.com/zcbenz/chromium-source-tarball/releases">chromium-source-tarball</a>（我先前下的看用不上就都删了），
-看看是否可以编绎。经过我对编绎官网代码的了解，跟本没有out文件夹，那我新建一
-个out目录，调用gn args out/my_build，结果它说当前不是一个库。看下它的代码，要
-检查当前或上层目录是否有.gclient文件，我已经有这个文件了，copy一个过来。再次运
-行，结果报了build目录中什么文件缺失，好吧又copy一个目录，又报了一个sysroot目录
-的错误。
+为了严谨性，我又再次下载了<a href="https://github.com/zcbenz/chromium-source-tarball/releases">chromium-source-tarball</a>（我先前下的看用不上就都删了），看看是否可以编绎。经过我对编绎官网代码的了解，跟本没有out文件夹，那我新建一个out目录，调用gn args out/my_build，结果它说当前不是一个库。看下它的代码，要检查当前或上层目录是否有.gclient文件，我已经有这个文件了，copy一个过来。再次运行，结果报了build目录中什么文件缺失，好吧又copy一个目录，又报了一个sysroot目录的错误。
 </p>
 
 <p>
-再查下是否哪里有介绍编绎的，找到了<a href="https://github.com/atom/libchromiumcontent/issues/71">Build from Chromium's source tarball</a>， 这个
-是同一个人的介绍，为了减少下载和自动化做了这个。然后还找到了<a href="https://groups.google.com/a/chromium.org/forum/#!msg/chromium-dev/pgVmZ88_Fa0/JktqMx3GHO8J">Unable to build
-from official source tarball on Mac and Windows</a>， 他在Chromium-dev组的提问，最
-后他提到了是可以编绎的。还找到了<a href="https://github.com/atom/libchromiumcontent/pull/72">Download source tarball instead of checking
+再查下是否哪里有介绍编绎的，找到了<a href="https://github.com/atom/libchromiumcontent/issues/71">Build from Chromium's source tarball</a>， 这个是同一个人的介绍，为了减少下载和自动化做了这个。然后还找到了<a href="https://groups.google.com/a/chromium.org/forum/#!msg/chromium-dev/pgVmZ88_Fa0/JktqMx3GHO8J">Unable to build
+from official source tarball on Mac and Windows</a>， 他在Chromium-dev组的提问，最后他提到了是可以编绎的。还找到了<a href="https://github.com/atom/libchromiumcontent/pull/72">Download source tarball instead of checking
 out the whole codebase</a>，看了下修改集做了些工作。然后看到<a href="https://github.com/atom/libchromiumcontent#one-time-setup">libchromiumcontent</a>
 这个介绍，好像说明太简单，应该不能编绎。不放心，然后大致看了下代码，有下载
 source tarball的部份，有配置环境的部份，还有其他（我不记得了），决定试下。
-script/bootstrap 看了输出，还是有向google的链接（用vpn)。关键最后clang居然下不下来，试
-了不下十次。后面的步骤就没有试了。感兴趣的可以试下。
+script/bootstrap 看了输出，还是有向google的链接（用vpn)。关键最后clang居然下不下来，试了不下十次。后面的步骤就没有试了。感兴趣的可以试下。
 </p>
 </div>
 </div>
 
-<div id="outline-container-orga62d696" class="outline-2">
-<h2 id="orga62d696">想法</h2>
-<div class="outline-text-2" id="text-orga62d696">
+<div id="outline-container-org02465ba" class="outline-2">
+<h2 id="org02465ba">想法</h2>
+<div class="outline-text-2" id="text-org02465ba">
 <p>
 以上闲话这么多，有一个想法：
 </p>
@@ -230,14 +193,11 @@ script/bootstrap 看了输出，还是有向google的链接（用vpn)。关键�
 <ul class="org-ul">
 <li>是否有必要做一个chromium的镜像。</li>
 <li>是放到github，还是放到coding.net国内的代码托管中</li>
-<li>主要支持ubuntu（我现在工作用的ubuntu），是否要支持windows,mac平台（平台支持
-应该可以参考<a href="https://github.com/atom/libchromiumcontent">libchromiumcontent</a>的做法）， chromium需要在线装平台依赖库。</li>
-<li>chromium以前的版本是否需要支持，支持前面版本的几个tag，前面的版本是否还能编
-绎，现在的编绎用的ninja，记得以前用的是gyp</li>
+<li>主要支持ubuntu（我现在工作用的ubuntu），是否要支持windows,mac平台（平台支持应该可以参考<a href="https://github.com/atom/libchromiumcontent">libchromiumcontent</a>的做法）， chromium需要在线装平台依赖库。</li>
+<li>chromium以前的版本是否需要支持，支持前面版本的几个tag，前面的版本是否还能编绎，现在的编绎用的ninja，记得以前用的是gyp</li>
 <li>chromium有不少第三方的代码是用的submodule，但用的gclient管理，是否把
 chromium和这些第三方的所有代码都放到一个库中</li>
-<li>每次更新代码时，检查工作目录中文件的时间和镜像库中文件的时间（比较时间是否
-可靠），确定需要更新到镜像库中的文件；还是检查md5（这种运算量会很大）</li>
+<li>每次更新代码时，检查工作目录中文件的时间和镜像库中文件的时间（比较时间是否可靠），确定需要更新到镜像库中的文件；还是检查md5（这种运算量会很大）</li>
 </ul>
 </div>
 </div>
@@ -284,7 +244,7 @@ chromium和这些第三方的所有代码都放到一个库中</li>
         })();
       </script>
       <div class="footer">
-        <p>Generated by <a href="http://www.gnu.org/software/emacs/">Emacs</a> 25.x (<a href="http://orgmode.org">Org mode</a> 9.x)</p>
+        <p>Generated by <a href="http://www.gnu.org/software/emacs/">Emacs</a> 24.x (<a href="http://orgmode.org">Org mode</a> 9.x)</p>
         <p>
           Copyright &copy; 2012 - <span id="footerYear"></span> <a href="mailto:ccsheller &lt;at&gt; gmail &lt;dot&gt; com">ccsheller</a>
           &nbsp;&nbsp;-&nbsp;&nbsp;

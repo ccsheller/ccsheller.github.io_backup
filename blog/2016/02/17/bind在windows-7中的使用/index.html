@@ -32,51 +32,41 @@
 <div class="post">
 <h1>BIND在Windows 7中的使用</h1>
 
-<div id="outline-container-org1a5279d" class="outline-2">
-<h2 id="org1a5279d">起因</h2>
-<div class="outline-text-2" id="text-org1a5279d">
+<div id="outline-container-orge92347c" class="outline-2">
+<h2 id="orge92347c">起因</h2>
+<div class="outline-text-2" id="text-orge92347c">
 <p>
-由于公司网络使用DHCP分配IP，这样会发生IP地址变化的问题。这不过个年，大家的IP都刷
-新了。对于个人没问题，但是对于服务器（自己管理的PC机）这就很麻烦了，大家都要更新
-配置到新IP（我们有git，ftp，www）。为此我
-想通过配个DNS服务器来解决这个问题。因此需要找一个不会关机或者IP很可能不会变的机
-器，现在公司机房中有一台我们使用的虚拟机，装的是windows 7系统。查了下windows 7是
-不支持内置的dns服务的。找到PowerDNS，但是它已经不支持windows系统了。最后找到BIND，
-通过几番查找终于配置可用了。
+由于公司网络使用DHCP分配IP，这样会发生IP地址变化的问题。这不过个年，大家的IP都刷新了。对于个人没问题，但是对于服务器（自己管理的PC机）这就很麻烦了，大家都要更新配置到新IP（我们有git，ftp，www）。为此我想通过配个DNS服务器来解决这个问题。因此需要找一个不会关机或者IP很可能不会变的机器，现在公司机房中有一台我们使用的虚拟机，装的是windows 7系统。查了下windows 7是不支持内置的dns服务的。找到PowerDNS，但是它已经不支持windows系统了。最后找到BIND，通过几番查找终于配置可用了。
 </p>
 </div>
 </div>
 
-<div id="outline-container-org008e319" class="outline-2">
-<h2 id="org008e319">下载</h2>
-<div class="outline-text-2" id="text-org008e319">
+<div id="outline-container-org5353564" class="outline-2">
+<h2 id="org5353564">下载</h2>
+<div class="outline-text-2" id="text-org5353564">
 <p>
 <a href="https://ftp.isc.org/isc/bind9/">bind9</a> 最新的下载下来。
 </p>
 </div>
 </div>
 
-<div id="outline-container-org4c6a475" class="outline-2">
-<h2 id="org4c6a475">安装</h2>
-<div class="outline-text-2" id="text-org4c6a475">
+<div id="outline-container-orgffb702f" class="outline-2">
+<h2 id="orgffb702f">安装</h2>
+<div class="outline-text-2" id="text-orgffb702f">
 <p>
-参照<a href="http://drupalmotion.com/article/dev-environment-install-and-configure-bind-dns-server-windows-7">Dev Environment: Install and configure BIND DNS Server in Windows 7</a> 安
-装，解压，右键管理员运行BINDInstall.exe，在界面中填上密码，点击Install。其被默认
-安装到了C:\Program Files\ISC BIND 9目录。（其中安装时填的账号密码，不知道有什么
-用）。
+参照<a href="http://drupalmotion.com/article/dev-environment-install-and-configure-bind-dns-server-windows-7">Dev Environment: Install and configure BIND DNS Server in Windows 7</a> 安装，解压，右键管理员运行BINDInstall.exe，在界面中填上密码，点击Install。其被默认安装到了C:\Program Files\ISC BIND 9目录。（其中安装时填的账号密码，不知道有什么用）。
 </p>
 </div>
 </div>
 
-<div id="outline-container-org53c2bbf" class="outline-2">
-<h2 id="org53c2bbf">配置</h2>
-<div class="outline-text-2" id="text-org53c2bbf">
+<div id="outline-container-org4239d50" class="outline-2">
+<h2 id="org4239d50">配置</h2>
+<div class="outline-text-2" id="text-org4239d50">
 <ol class="org-ol">
 <li>添加环境变量，给PATH值末尾添加 ;"C:\Program Files\ISC BIND 9\bin"</li>
 <li>管理员启动cmd，在终编中切换工作目录到C:\Program Files\ISC BIND 9\etc，执行
 rndc-confgen -a 生成rndc.key</li>
-<li>C:\Program Files\ISC BIND 9文件夹的权限修改，将Users用户的权限改为完全控制，
-参考了<a href="http://www.zytrax.com/books/dns/ch5/win2k.html">Chapter 5. Bind on Win2k and NT 4.0</a>。(这样做可能留下了安全隐患）</li>
+<li>C:\Program Files\ISC BIND 9文件夹的权限修改，将Users用户的权限改为完全控制，参考了<a href="http://www.zytrax.com/books/dns/ch5/win2k.html">Chapter 5. Bind on Win2k and NT 4.0</a>。(这样做可能留下了安全隐患）</li>
 <li><p>
 编辑etc文件夹下的named.conf（没有就创建一个），改成如下内容：
 </p>
@@ -116,7 +106,7 @@ logging{
   category default{
     my_log;
   };
-};     
+};
 </pre>
 </div>
 
@@ -125,23 +115,19 @@ logging{
 </p>
 
 <p>
-其中forwarders表示转发器的地址，当本地zone没有定义请求的域时,将请求转发到转
-发器的地址中进行查询。
+其中forwarders表示转发器的地址，当本地zone没有定义请求的域时,将请求转发到转发器的地址中进行查询。
 </p>
 
 <p>
-其中forward only表示，当转发器的地址无法联系时，不要进行根域名服务器的请求
-查询，我觉得不需要root查询就把zone "."给注释掉了。
+其中forward only表示，当转发器的地址无法联系时，不要进行根域名服务器的请求查询，我觉得不需要root查询就把zone "."给注释掉了。
 </p>
 
 <p>
-其中allow-query     { any; }; 表示允许任何人的机器都可以查询，文档中说明这
-个是默认值，但是我不加这个，转发功能不起作用。参考了<a href="http://opjasee.com/2014/04/21/start-use-dns.html">使用Bind搭建内网DNS</a>。
+其中allow-query     { any; }; 表示允许任何人的机器都可以查询，文档中说明这个是默认值，但是我不加这个，转发功能不起作用。参考了<a href="http://opjasee.com/2014/04/21/start-use-dns.html">使用Bind搭建内网DNS</a>。
 </p>
 
 <p>
-其中ccsheller.org就是你要进行自定义解析的域名了。其中的forwarders {};表示此域不进
-行转发，file 对应的文件就定义了域名下各个子域对应的ip。
+其中ccsheller.org就是你要进行自定义解析的域名了。其中的forwarders {};表示此域不进行转发，file 对应的文件就定义了域名下各个子域对应的ip。
 </p>
 
 <p>
@@ -176,31 +162,29 @@ ftp     IN  A   192.168.0.114
 </div>
 </div>
 
-<div id="outline-container-org39d5315" class="outline-2">
-<h2 id="org39d5315">启动dns服务</h2>
-<div class="outline-text-2" id="text-org39d5315">
+<div id="outline-container-org3c3c56f" class="outline-2">
+<h2 id="org3c3c56f">启动dns服务</h2>
+<div class="outline-text-2" id="text-org3c3c56f">
 <p>
-在计算机管理--服务中，找到“ISC BIND”将其启动类型改为自动，然后启动它。如果没
-有问题就能正常启动了。
+在计算机管理--服务中，找到“ISC BIND”将其启动类型改为自动，然后启动它。如果没有问题就能正常启动了。
 </p>
 </div>
 </div>
 
-<div id="outline-container-org6f65742" class="outline-2">
-<h2 id="org6f65742">客户机配置</h2>
-<div class="outline-text-2" id="text-org6f65742">
+<div id="outline-container-org7e2f8ea" class="outline-2">
+<h2 id="org7e2f8ea">客户机配置</h2>
+<div class="outline-text-2" id="text-org7e2f8ea">
 <p>
 当dns服务器启动后，客户机就可能配置dns服务器地址ip为自定义的dns服务器
 </p>
 </div>
 </div>
 
-<div id="outline-container-org5d13c3b" class="outline-2">
-<h2 id="org5d13c3b">有用的命令</h2>
-<div class="outline-text-2" id="text-org5d13c3b">
+<div id="outline-container-org9b631a7" class="outline-2">
+<h2 id="org9b631a7">有用的命令</h2>
+<div class="outline-text-2" id="text-org9b631a7">
 <p>
-当修改了dns服务器的配置后，可以不重启服务（当没效果，或你喜好，重启也没事），
-使用命令（需要管理员权限）
+当修改了dns服务器的配置后，可以不重启服务（当没效果，或你喜好，重启也没事），使用命令（需要管理员权限）
 </p>
 
 <div class="org-src-container">
@@ -212,9 +196,9 @@ rndc flush //根据情况使用
 </div>
 </div>
 
-<div id="outline-container-orgedb3418" class="outline-2">
-<h2 id="orgedb3418">其他参考</h2>
-<div class="outline-text-2" id="text-orgedb3418">
+<div id="outline-container-org59921c0" class="outline-2">
+<h2 id="org59921c0">其他参考</h2>
+<div class="outline-text-2" id="text-org59921c0">
 <p>
 <a href="http://www.zytrax.com/books/dns/">DNS for Rocket Scientists</a>
 <a href="http://blog.sina.com.cn/s/blog_64a8c8930100zwga.html">在win7 x64上使用bind搭建DNS服务器</a>
@@ -264,7 +248,7 @@ rndc flush //根据情况使用
         })();
       </script>
       <div class="footer">
-        <p>Generated by <a href="http://www.gnu.org/software/emacs/">Emacs</a> 25.x (<a href="http://orgmode.org">Org mode</a> 9.x)</p>
+        <p>Generated by <a href="http://www.gnu.org/software/emacs/">Emacs</a> 24.x (<a href="http://orgmode.org">Org mode</a> 9.x)</p>
         <p>
           Copyright &copy; 2012 - <span id="footerYear"></span> <a href="mailto:ccsheller &lt;at&gt; gmail &lt;dot&gt; com">ccsheller</a>
           &nbsp;&nbsp;-&nbsp;&nbsp;
