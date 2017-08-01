@@ -2,7 +2,7 @@
 #+AUTHOR:      ccsheller
 #+EMAIL:       ccsheller@gmail.com
 #+DATE:        2017-07-25 二
-#+URI:         /blog/%y/%m/%d/core-dump-file-analysis.org
+#+URI:         /blog/%y/%m/%d/core-dump-file-analysis
 #+KEYWORDS:    gdb,core
 #+TAGS:        gdb
 #+LANGUAGE:    en
